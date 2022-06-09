@@ -6,11 +6,10 @@ class Chronometer {
 
   start(printTimeCallback) {
     this.intervalId = setInterval(() => {
+      this.currentTime += 1;
       if (printTimeCallback) {
         printTimeCallback();
       }
-
-      this.currentTime += 1;
     }, 1000);
   }
 
@@ -41,6 +40,7 @@ class Chronometer {
   split() {
     let minutes = this.computeTwoDigitNumber(this.getMinutes());
     let seconds = this.computeTwoDigitNumber(this.getSeconds());
+
     return `${minutes}:${seconds}`;
   }
 }
@@ -50,3 +50,5 @@ class Chronometer {
 if (typeof module !== 'undefined') {
   module.exports = Chronometer;
 }
+const countChronometer = new Chronometer();
+console.log(countChronometer.start());
